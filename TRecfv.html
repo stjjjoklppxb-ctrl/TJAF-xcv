@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإبلاغ عن حسابات الفيسبوك</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* الأساسيات */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a0dad, #4b0082);
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* التصميم العام */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* الهيدر */
+        header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* المحتوى الرئيسي */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .report-card {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input[type="url"] {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="url"]:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(106, 13, 173, 0.7);
+        }
+        
+        select {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        select:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(106, 13, 173, 0.7);
+        }
+        
+        select option {
+            background: #4b0082;
+            color: #fff;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            min-height: 120px;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+        
+        textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(106, 13, 173, 0.7);
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #9b30ff, #7a1dad);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* زر قناة المطور */
+        .developer-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #0088cc, #006699);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+        }
+        
+        .developer-btn:hover {
+            background: linear-gradient(135deg, #0099dd, #0077aa);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* الفوتر */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .report-card {
+                padding: 20px;
+            }
+            
+            input[type="url"], select, textarea, .submit-btn, .developer-btn {
+                padding: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.7rem;
+            }
+            
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .report-card {
+                padding: 15px;
+            }
+        }
+        
+        /* رسائل التنبيه */
+        .alert {
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .alert.success {
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid rgba(46, 204, 113, 0.5);
+            color: #2ecc71;
+        }
+        
+        .alert.error {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid rgba(231, 76, 60, 0.5);
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="pic.png" alt="شعار الموقع" class="logo">
+            <h1>الإبلاغ عن حسابات الفيسبوك</h1>
+            <p class="subtitle">ساعدنا في الحفاظ على مجتمع آمن من خلال الإبلاغ عن الحسابات المخالفة</p>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="report-card">
+                <div id="successAlert" class="alert success">
+                    تم إرسال تقريرك بنجاح. شكراً لك على مساعدتنا!
+                </div>
+                
+                <div id="errorAlert" class="alert error">
+                    يرجى إدخال رابط صحيح لحساب الفيسبوك.
+                </div>
+                
+                <form id="reportForm">
+                    <div class="form-group">
+                        <label for="fbUrl">رابط حساب الفيسبوك</label>
+                        <input type="url" id="fbUrl" placeholder="https://www.facebook.com/username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reason">سبب الإبلاغ</label>
+                        <select id="reason" required>
+                            <option value="" disabled selected>اختر سبب الإبلاغ</option>
+                            <option value="spam">حساب مزيف أو احتيالي</option>
+                            <option value="harassment">مضايقة أو تنمر</option>
+                            <option value="hate_speech">خطاب كراهية</option>
+                            <option value="fake_news">معلومات مضللة</option>
+                            <option value="impersonation">انتحال شخصية</option>
+                            <option value="other">سبب آخر</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="details">تفاصيل إضافية (اختياري)</label>
+                        <textarea id="details" placeholder="أضف أي تفاصيل إضافية قد تساعد في مراجعة التقرير..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">إرسال التقرير</button>
+                    
+                    <a href="https://t.me/D3M_7ESABAT" target="_blank" class="developer-btn">
+                        <i class="fab fa-telegram"></i>
+                        قناة المطور
+                    </a>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="copyright">جميع الحقوق محفوظة &copy; <span id="currentYear"></span></p>
+                <p>منصة الإبلاغ عن حسابات الفيسبوك</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // تحديث السنة الحالية في الفوتر
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // التعامل مع إرسال النموذج
+        document.getElementById('reportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fbUrl = document.getElementById('fbUrl').value;
+            const reason = document.getElementById('reason').value;
+            
+            // التحقق من صحة الرابط
+            if (!isValidFacebookUrl(fbUrl)) {
+                showAlert('error');
+                return;
+            }
+            
+            // في التطبيق الحقيقي، هنا سيتم إرسال البيانات إلى الخادم
+            // للمثال، سنعرض رسالة نجاح فقط
+            showAlert('success');
+            
+            // إعادة تعيين النموذج
+            document.getElementById('reportForm').reset();
+        });
+        
+        // دالة للتحقق من صحة رابط الفيسبوك
+        function isValidFacebookUrl(url) {
+            const facebookRegex = /^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9.]+/;
+            return facebookRegex.test(url);
+        }
+        
+        // دالة لعرض رسائل التنبيه
+        function showAlert(type) {
+            // إخفاء جميع التنبيهات أولاً
+            document.getElementById('successAlert').style.display = 'none';
+            document.getElementById('errorAlert').style.display = 'none';
+            
+            // عرض التنبيه المطلوب
+            if (type === 'success') {
+                document.getElementById('successAlert').style.display = 'block';
+            } else if (type === 'error') {
+                document.getElementById('errorAlert').style.display = 'block';
+            }
+            
+            // إخفاء التنبيه بعد 5 ثوانٍ
+            setTimeout(() => {
+                document.getElementById('successAlert').style.display = 'none';
+                document.getElementById('errorAlert').style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
